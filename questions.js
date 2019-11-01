@@ -1,3 +1,18 @@
+var titleDiv = document.getElementById("title");
+var gameInfoDiv = document.getElementById("game-info");
+var startQuiz = document.getElementById("start-quiz");
+var timerDisplay = document.getElementById("timer");
+
+//Questions
+var testDiv = document.getElementById("test");
+var listDiv = document.getElementById("questions");
+var questA = document.getElementById("a");
+var questB = document.getElementById("b");
+var questC = document.getElementById("c");
+var questD = document.getElementById("d");
+
+
+
 var questions = [
     {
       title: "What are variables used for in JavaScript Programs?",
@@ -26,7 +41,64 @@ var questions = [
       }
   ];
 
+  var secondsLeft = 75;
 
-document.write(questions[0].title);
+function setTime1() {
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    testDiv.textContent = secondsLeft + " seconds left till colorsplosion.";
+
+    if(secondsLeft === 0) {
+      clearInterval(timerInterval);
+      sendMessage();
+    }
+
+  }, 1000);
+}
+
+function setTime() {
+    var timerInterval = setInterval(function() {
+      secondsLeft--;
+      timerDisplay.textContent = "Time: " + secondsLeft;
+  
+      if(secondsLeft === 0) {
+        clearInterval(timerInterval);
+        sendMessage();
+      }
+  
+    }, 1000);
+  }
+
+  startQuiz.addEventListener("click", function() {
+    
+        var timerInterval = setInterval(function() {
+          secondsLeft--;
+          timerDisplay.textContent = "Time: " + secondsLeft;
+      
+          if(secondsLeft === 0) {
+            clearInterval(timerInterval);
+            sendMessage();
+          }
+      
+        }, 1000);
+        title.remove();
+        gameInfoDiv.remove();
+        startQuiz.remove();
+        
+        testDiv.textContent = questions[0].title;
+        listDiv.setAttribute("style", "visbility: visible; list-style: none;");
+        questA.textContent = "A. " + questions[0].choices[0];
+        questB.textContent = "B. " + questions[0].choices[1];
+        questC.textContent = "C. " + questions[0].choices[2];
+        questD.textContent = "D. " + questions[0].choices[3];
+        
 
 
+      
+    titleDiv.setAttribute("style", "color:blue; border:2px solid black;");
+  });
+
+  
+
+
+  
