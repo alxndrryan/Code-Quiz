@@ -3,7 +3,7 @@ var gameInfoDiv = document.getElementById("game-info");
 var startQuiz = document.getElementById("start-quiz");
 var timerDisplay = document.getElementById("timer");
 
-//Questions
+//questions
 var testDiv = document.getElementById("test");
 var listDiv = document.getElementById("questions");
 var questA = document.getElementById("a");
@@ -43,19 +43,6 @@ var questions = [
 
   var secondsLeft = 75;
 
-function setTime1() {
-  var timerInterval = setInterval(function() {
-    secondsLeft--;
-    testDiv.textContent = secondsLeft + " seconds left till colorsplosion.";
-
-    if(secondsLeft === 0) {
-      clearInterval(timerInterval);
-      sendMessage();
-    }
-
-  }, 1000);
-}
-
 function setTime() {
     var timerInterval = setInterval(function() {
       secondsLeft--;
@@ -69,6 +56,7 @@ function setTime() {
     }, 1000);
   }
 
+  //starts timer, removes start page elements, and displays first question
   startQuiz.addEventListener("click", function() {
     
         var timerInterval = setInterval(function() {
@@ -91,12 +79,52 @@ function setTime() {
         questB.textContent = "B. " + questions[0].choices[1];
         questC.textContent = "C. " + questions[0].choices[2];
         questD.textContent = "D. " + questions[0].choices[3];
-        
-
-
-      
-    titleDiv.setAttribute("style", "color:blue; border:2px solid black;");
   });
+
+  //question 1
+  if (questA.textContent = "A. " + questions[0].choices[0]) {
+  questA.addEventListener("click", function() {
+
+    
+
+    testDiv.textContent = questions[1].title;
+    questA.textContent = "A. " + questions[1].choices[0];
+    questB.textContent = "B. " + questions[1].choices[1];
+    questC.textContent = "C. " + questions[1].choices[2];
+    questD.textContent = "D. " + questions[1].choices[3];
+
+    if (questD.textContent = "D. " + questions[1].choices[3]) {
+        questD.addEventListener("click", function() {
+      
+          
+      
+          testDiv.textContent = questions[2].title;
+          questA.textContent = "A. " + questions[2].choices[0];
+          questB.textContent = "B. " + questions[2].choices[1];
+          questC.textContent = "C. " + questions[2].choices[2];
+          questD.textContent = "D. " + questions[2].choices[3];
+      
+        })}
+
+        if (questA.textContent = "A. " + questions[2].choices[0]) {
+            questA.addEventListener("click", function() {
+          
+              
+          
+              testDiv.textContent = questions[3].title;
+              questA.textContent = "A. " + questions[3].choices[0];
+              questB.textContent = "B. " + questions[3].choices[1];
+              questC.textContent = "C. " + questions[3].choices[2];
+              questD.textContent = "D. " + questions[3].choices[3];
+          
+            })}
+
+  })};
+
+  //question 2
+  
+
+
 
   
 
