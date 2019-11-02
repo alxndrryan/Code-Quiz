@@ -11,6 +11,13 @@ var questB = document.getElementById("b");
 var questC = document.getElementById("c");
 var questD = document.getElementById("d");
 var resultDiv = document.getElementById("result");
+var questDiv = document.getElementsByClassName("options")
+
+console.log(questDiv.length - 1);
+
+
+
+
 
 
 
@@ -41,6 +48,9 @@ var questions = [
         answer: "Client"
       }
   ];
+
+
+  
 
   var secondsLeft = 75;
 
@@ -73,11 +83,38 @@ function setTime() {
       });
 
 
-      for (var i=0; i < questions.length; i++) {
-        if choice = questions[i].answer {
-          do something
-        }
+       
+      
+      
+
+      for (var i=0; i < questDiv.length; i++) {
+        questDiv[i].textContent = questions[0].choices[i];
+      
+    
+    questDiv[i].addEventListener("click", function() {
+      for (var i=0; i < questDiv.length; i++) {
+        questDiv[i].textContent = questions[1].choices[i];
+      
+      
+      
       }
+        
+  
+      
+      })};
+
+      
+        for (var i=0; i < questDiv.length; i++) {
+          questDiv[i].textContent = questions[2].choices[i];
+        
+        
+        
+      };
+
+    
+
+
+        
 
       // questA.textContent = "A. " + questions[0].choices[0];
       //   questB.textContent = "B. " + questions[0].choices[1];
@@ -170,7 +207,9 @@ function setTime() {
 
       
 
-
+  for (var i=0; i < questions.length; i++) {
+    console.log(questions[0].choices[i]);
+  }
 
 
 //question 1
