@@ -103,14 +103,6 @@ function setTime() {
       
       })};
 
-      
-        for (var i=0; i < questDiv.length; i++) {
-          questDiv[i].textContent = questions[2].choices[i];
-        
-        
-        
-      };
-
     
 
 
