@@ -32,20 +32,9 @@ function setTime() {
 
 
 //Counter to cycle through questions object
-var i = 1;
+var i = 0;
 
-function checkAnswer(userChoice) {
-    var correctAnswer = questions[i].answer;
-    if (userChoice === correctAnswer) {
-        console.log("Correct!")
-    } else {
-        console.log("Incorrect!")
-    }
-    i++;
-    getQuestion(i);
-}
-
-
+//Starts quiz, sets timer, grabs first question
 startQuiz.addEventListener("click", function() {
     listDiv.setAttribute("style", "visbility: visible; list-style: none;");
     setTime();
@@ -63,27 +52,38 @@ function getQuestion() {
 }
 
 
-choiceC.textContent = "C. " + questions[1].choices[3];
-
+function checkAnswer() {
 if (choiceA.textContent === "A. " + questions[i].answer) {
     console.log("A is correct!");
+    i++;
+    getQuestion();
 } else if (choiceB.textContent === "B. " + questions[i].answer) {
     console.log("B is correct!");
+    i++;
+    getQuestion();
+    console.log(i);
 } else if (choiceC.textContent === "C. " + questions[i].answer) {
     console.log("C is correct!");
-} else if (choiceD.textContent === "C. " + questions[i].answer) {
+    i++;
+    getQuestion();
+} else if (choiceD.textContent === "D. " + questions[i].answer) {
     console.log("D is correct!");
+    i++;
+    getQuestion();
 } else {
     console.log("wtf");
+    console.log(i);
 };
-
-if (questions[1].choices[3] === questions[1].answer) {
-    console.log("this works");
 }
 
-console.log(questions[1].choices[3]);
 
-console.log(questions);
+// if (questions[1].choices[3] === questions[1].answer) {
+//     console.log("this works");
+// }
+
+// console.log(questions[1].choices[3]);
+
+// console.log(questions);
 
 // switch(questions[i].answer) {
 //     case w:
@@ -107,30 +107,22 @@ console.log(questions);
 //   }
 
 choiceA.addEventListener("click", function() {
-    i++
-    getQuestion();
+    checkAnswer();
 });
 
 choiceB.addEventListener("click", function() {
-    getQuestion();
+    checkAnswer();
 });
 
 choiceC.addEventListener("click", function() {
-    getQuestion();
+    checkAnswer();
 });
 
 choiceD.addEventListener("click", function() {
-    getQuestion();
+    checkAnswer();
 });
 
 
 
-// checkAnswer();
-        
-
-//Display question
-//If user guess correctly
-//Get next question
-//Else minus from time(score)
-//Get next question
+//start quiz and get first question
 
