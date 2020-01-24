@@ -78,6 +78,7 @@ var questions = [
       
     //   })};
 
+<<<<<<< HEAD
       
     //     for (var i=0; i < questDiv.length; i++) {
     //       questDiv[i].textContent = questions[2].choices[i];
@@ -86,6 +87,8 @@ var questions = [
         
     //   };
 
+=======
+>>>>>>> 289d4674ab780da0ea305f60adbb29071798b675
     
 
 
