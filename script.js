@@ -52,30 +52,78 @@ function getQuestion() {
 }
 
 
+// function checkAnswer() {
+// if (choiceA.textContent === "A. " + questions[i].answer) {
+//     console.log("A is correct!");
+//     i++;
+//     getQuestion();
+// } else if (choiceB.textContent === "B. " + questions[i].answer) {
+//     console.log("B is correct!");
+//     i++;
+//     getQuestion();
+//     console.log(i);
+// } else if (choiceC.textContent === "C. " + questions[i].answer) {
+//     console.log("C is correct!");
+//     i++;
+//     getQuestion();
+// } else if (choiceD.textContent === "D. " + questions[i].answer) {
+//     console.log("D is correct!");
+//     i++;
+//     getQuestion();
+// } else {
+//     console.log("wtf");
+//     console.log(i);
+// };
+// }
+
 function checkAnswer() {
 if (choiceA.textContent === "A. " + questions[i].answer) {
-    console.log("A is correct!");
-    i++;
+    console.log("A is correct");
+    
     getQuestion();
-} else if (choiceB.textContent === "B. " + questions[i].answer) {
-    console.log("B is correct!");
     i++;
-    getQuestion();
-    console.log(i);
-} else if (choiceC.textContent === "C. " + questions[i].answer) {
-    console.log("C is correct!");
-    i++;
-    getQuestion();
-} else if (choiceD.textContent === "D. " + questions[i].answer) {
-    console.log("D is correct!");
-    i++;
-    getQuestion();
 } else {
-    console.log("wtf");
-    console.log(i);
-};
+    console.log("A is incorrect!")
+    
+    getQuestion();
+    if (choiceB.textContent === "B. " + questions[i].answer) {
+        console.log("B is correct");
+        
+        getQuestion();
+        i++;
+    } else {
+        console.log("B is incorrect!")
+        
+        getQuestion();
+        if (choiceC.textContent === "C. " + questions[i].answer) {
+            console.log("C is correct");
+            
+            getQuestion();
+            i++;
+        } else {
+            console.log("C is incorrect!")
+            
+            getQuestion();
+            if (choiceD.textContent === "D. " + questions[i].answer) {
+                console.log("D is correct");
+                console.log(i);
+                getQuestion();
+                i++;
+            } else {
+                console.log("D is incorrect!")
+                
+                getQuestion();
+            }
+        }
+    }
 }
 
+
+
+
+
+
+}
 
 // if (questions[1].choices[3] === questions[1].answer) {
 //     console.log("this works");
