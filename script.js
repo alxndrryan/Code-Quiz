@@ -32,7 +32,7 @@ function setTime() {
 
 
 //Counter to cycle through questions object
-var i = 0;
+var i = 1;
 
 function checkAnswer(userChoice) {
     var correctAnswer = questions[i].answer;
@@ -61,6 +61,67 @@ function getQuestion() {
     choiceC.textContent = "C. " + questions[i].choices[2];
     choiceD.textContent = "D. " + questions[i].choices[3];
 }
+
+
+choiceC.textContent = "C. " + questions[1].choices[3];
+
+if (choiceA.textContent === "A. " + questions[i].answer) {
+    console.log("A is correct!");
+} else if (choiceB.textContent === "B. " + questions[i].answer) {
+    console.log("B is correct!");
+} else if (choiceC.textContent === "C. " + questions[i].answer) {
+    console.log("C is correct!");
+} else if (choiceD.textContent === "C. " + questions[i].answer) {
+    console.log("D is correct!");
+} else {
+    console.log("wtf");
+};
+
+if (questions[1].choices[3] === questions[1].answer) {
+    console.log("this works");
+}
+
+console.log(questions[1].choices[3]);
+
+console.log(questions);
+
+// switch(questions[i].answer) {
+//     case w:
+//       choiceA.textContent = "A. " + questions[i].answer;
+//     case x:
+//       choiceB.textContent = "B. " + questions[i].answer;
+//       break;
+//     case y:
+//         choiceC.textContent = "C. " + questions[i].answer;
+//       break;
+//     case z:
+//         choiceD.textContent = "D. " + questions[i].answer;
+//   }
+
+  
+
+//   if (choiceA.textContent === "A. " + questions[0].answer) {
+//       console.log(true);
+//   } else {
+//       console.log(false);
+//   }
+
+choiceA.addEventListener("click", function() {
+    i++
+    getQuestion();
+});
+
+choiceB.addEventListener("click", function() {
+    getQuestion();
+});
+
+choiceC.addEventListener("click", function() {
+    getQuestion();
+});
+
+choiceD.addEventListener("click", function() {
+    getQuestion();
+});
 
 
 
