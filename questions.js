@@ -1,19 +1,4 @@
-var titleDiv = document.getElementById("title");
-var gameInfoDiv = document.getElementById("game-info");
-var startQuiz = document.getElementById("start-quiz");
-var timerDisplay = document.getElementById("timer");
 
-//questions
-var testDiv = document.getElementById("test");
-var listDiv = document.getElementById("questions");
-var questA = document.getElementById("a");
-var questB = document.getElementById("b");
-var questC = document.getElementById("c");
-var questD = document.getElementById("d");
-var resultDiv = document.getElementById("result");
-var questDiv = document.getElementsByClassName("options")
-
-console.log(questDiv.length - 1);
 
 
 
@@ -49,67 +34,57 @@ var questions = [
       }
   ];
 
+  // console.log(questions[1].answer);
+
+  console.log(questions[0].title);
+
 
   
 
-  var secondsLeft = 75;
-
-function setTime() {
-    var timerInterval = setInterval(function() {
-      secondsLeft--;
-      timerDisplay.textContent = "Time: " + secondsLeft;
-  
-      if(secondsLeft === 0) {
-        clearInterval(timerInterval);
-        sendMessage();
-      }
-  
-    }, 1000);
-  }
 
   //starts timer, removes start page elements, and displays first question
-  startQuiz.addEventListener("click", function() {
+  // startQuiz.addEventListener("click", function() {
     
-        setTime();
-        gameInfoDiv.remove();
-        startQuiz.remove();
+  //       setTime();
+  //       gameInfoDiv.remove();
+  //       startQuiz.remove();
         
-        testDiv.textContent = questions[0].title;
-        listDiv.setAttribute("style", "visbility: visible; list-style: none;");
-        questA.textContent = "A. " + questions[0].choices[0];
-        questB.textContent = "B. " + questions[0].choices[1];
-        questC.textContent = "C. " + questions[0].choices[2];
-        questD.textContent = "D. " + questions[0].choices[3];
-      });
+  //       testDiv.textContent = questions[0].title;
+  //       listDiv.setAttribute("style", "visbility: visible; list-style: none;");
+  //       questA.textContent = "A. " + questions[0].choices[0];
+  //       questB.textContent = "B. " + questions[0].choices[1];
+  //       questC.textContent = "C. " + questions[0].choices[2];
+  //       questD.textContent = "D. " + questions[0].choices[3];
+  //     });
 
 
        
       
       
 
-      for (var i=0; i < questDiv.length; i++) {
-        questDiv[i].textContent = questions[0].choices[i];
+    //   for (var i=0; i < questDiv.length; i++) {
+    //     questDiv[i].textContent = questions[0].choices[i];
       
     
-    questDiv[i].addEventListener("click", function() {
-      for (var i=0; i < questDiv.length; i++) {
-        questDiv[i].textContent = questions[1].choices[i];
+    // questDiv[i].addEventListener("click", function() {
+    //   for (var i=0; i < questDiv.length; i++) {
+    //     questDiv[i].textContent = questions[1].choices[i];
       
       
       
-      }
+    //   }
         
   
       
-      })};
+    //   })};
 
       
-        for (var i=0; i < questDiv.length; i++) {
-          questDiv[i].textContent = questions[2].choices[i];
+    //     for (var i=0; i < questDiv.length; i++) {
+    //       questDiv[i].textContent = questions[2].choices[i];
         
         
         
-      };
+    //   };
 
     
 
@@ -207,9 +182,9 @@ function setTime() {
 
       
 
-  for (var i=0; i < questions.length; i++) {
-    console.log(questions[0].choices[i]);
-  }
+  // for (var i=0; i < questions.length; i++) {
+  //   console.log(questions[0].choices[i]);
+  // }
 
 
 //question 1
