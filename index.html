@@ -1,60 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link src="style.css">
-    <title>Javascript Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>JavaScript Quiz!</title>
 </head>
+
 <body>
-        <nav class="navbar  navbar-light">
-                <a class="nav-link justify-content-start" href="highscores.html">View Highscores</a>           
-                <div id="nav d-flex justify-content-end">
-                  <ul class="nav">
-                    <li class="nav-item justify-content-end">
-                      <a id = "timer" class="nav-link disabled" href="#"  aria-disabled="true">Time: 0</a>
-                    </li>
-                  </ul>
-                </div>      
-              </nav>
-        <div class = "container">
-            <div class = "row">
-                <div class = "col">
-                    <h1 id = "title" class = "text-center">Coding Quiz Challenge</h1>
-                    <h2 id = "question" class = "text-center"></h2>
-                </div>
-                </div>
-            <div class = "row">
-                    <div class = "col text-center">
-                        <p id = "game-info">Test your knowledge with Javascript by taking this multiple-choice quiz. Your final score is equal to the time remaining when the quiz is completed. Time is further substracted by choosing the incorrect answer. Click "Start Quiz" to begin!</p>
-                        <button type="button" id = "start-quiz" class="btn btn-info">Start Quiz</button>
-                        <ul id = "questions" style="list-style: none; visibility: hidden;">
-                            <li>
-                                    <button type="button" id="choice1" class="btn btn-info options">A. </button>
-                            </li>
-                            <li>
-                                    <button type="button" id="choice2" class="btn btn-info options">B. </button>
-                            </li>
-                            <li>
-                                    <button type="button" id="choice3" class="btn btn-info options">C. </button>
-                            </li>
-                            <li>
-                                    <button type="button" id="choice4" class="btn btn-info options">D. </button>
-                            </li>
-                        </ul>
-                    </div>
-            </div>
-            <div class = "row">
-                <div class = "col">
-                        <p id = "result"></p>
-                </div>
+    <nav class="navbar nav-light">
+        <a class="navbar-brand" href="./highscores.html">View Highscores</a>
+        <span class="navbar-text">Time: 0</span>
+    </nav>
+    <div class="container">
+        <div id="titleScreen">
+            <h1>Coding Quiz Challenge!</h1>
+            <p>
+                Test your knowledge with Javascript by taking this multiple-choice quiz. Your final score is equal to the time remaining when the quiz is completed. Time is further substracted by choosing the incorrect answer. Click "Start Quiz" to begin!
+            </p>
+            <button class="btn btn-primary" id="start-quiz">Start Quiz!</button>
         </div>
+
+        <div id="questionBlock">
+            <h2 id="questionPrompt">
+            </h2>
+            <button class="btn btn-primary btn-sm btnOption" id="quizOption1"></button>
+            <button class="btn btn-primary btn-sm btnOption" id="quizOption2"></button>
+            <button class="btn btn-primary btn-sm btnOption" id="quizOption3"></button>
+            <button class="btn btn-primary btn-sm btnOption" id="quizOption4"></button>
+        </div>
+
+        <div id="answerResult"></div>
+
+        <div id="endGameBlock">
+            <h1>Quiz Completed!</h1>
+            <p>Your final score is:</p>
+            <h3 id="showScore">DNF</h3>
+            <form id="submitInitials">
+                <div class="form-group">
+                    <label for="inputInitials">Enter Your Initials</label>
+                    <input type="text" class="form-control" id="playerInitials" value="">
+                </div>
+                <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+            </form>
+            <div class="alert alert-danger" id="alertBox" style="display: none;">
+                Please enter your initials!
             </div>
-    
-            </div>
-    <script src = "questions.js"></script>
-    <script src = "script.js"></script>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>

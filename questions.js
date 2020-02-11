@@ -26,8 +26,6 @@ var questions = [
       }
   ];
 
-  // console.log(questions[1].answer);
-
 
   
 

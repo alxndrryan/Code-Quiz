@@ -1,176 +1,156 @@
-var titleDiv = document.getElementById("title");
-var gameInfoDiv = document.getElementById("game-info");
-var startQuiz = document.getElementById("start-quiz");
-var timerDisplay = document.getElementById("timer");
+var answerText = "";
+var time = 15 * questions.length;
+var timeLimit;
+var questionDiv = document.querySelector("#questionBlock");
+var alertBoxDiv = document.querySelector("#alertBox");
+var answerDiv = document.querySelector("#answerResult");
+var endGameDiv = document.querySelector("#endGameBlock");
+var optionButtons = [document.querySelector("#quizOption1"), document.querySelector("#quizOption2"),
+document.querySelector("#quizOption3"), document.querySelector("#quizOption4")]
+var playerInitials = document.querySelector("#playerInitials");
+var questionNum = 0;
+var scoresArray;
+playerInitials.value = '';
 
-//questions
-var questDiv = document.getElementById("question");
-var listDiv = document.getElementById("questions");
-var choiceA = document.getElementById("choice1");
-var choiceB = document.getElementById("choice2");
-var choiceC = document.getElementById("choice3");
-var choiceD = document.getElementById("choice4");
-var resultDiv = document.getElementById("result");
-// var questDiv = document.getElementsByClassName("options")
+document.querySelector("#start-quiz").onclick = startQuiz;
+document.addEventListener("click", checkAnswer);
+document.querySelector("#submitButton").onclick = submitAndSaveScore;
 
-
-//Set countdown timer(score) at 75
-var secondsLeft = 75;
-
-function setTime() {
-    var timerInterval = setInterval(function() {
-      secondsLeft--;
-      timerDisplay.textContent = "Time: " + secondsLeft;
-  
-      if(secondsLeft === 0) {
-        clearInterval(timerInterval);
-        sendMessage();
-      }
-  
-    }, 1000);
-  }
-
-
-//Counter to cycle through questions object
-var i = 0;
-
-//Starts quiz, sets timer, grabs first question
-startQuiz.addEventListener("click", function() {
-    listDiv.setAttribute("style", "visbility: visible; list-style: none;");
-    setTime();
-    gameInfoDiv.remove();
-    startQuiz.remove();
-    getQuestion();
-    });
-
-function getQuestion() {
-    questDiv.textContent = questions[i].title;
-    choiceA.textContent = "A. " + questions[i].choices[0];
-    choiceB.textContent = "B. " + questions[i].choices[1];
-    choiceC.textContent = "C. " + questions[i].choices[2];
-    choiceD.textContent = "D. " + questions[i].choices[3];
+// If a local high scores array exists, import it, otherwise initialize the array
+if (localStorage.getItem("localHighScores")) {
+    scoresArray = JSON.parse(localStorage.getItem("localHighScores"));
+} else {
+    scoresArray = [];
 }
 
+// Do some fancy animations to hide the title screen and show the quiz
+function startQuiz() {
+    event.stopPropagation();
 
-// function checkAnswer() {
-// if (choiceA.textContent === "A. " + questions[i].answer) {
-//     console.log("A is correct!");
-//     i++;
-//     getQuestion();
-// } else if (choiceB.textContent === "B. " + questions[i].answer) {
-//     console.log("B is correct!");
-//     i++;
-//     getQuestion();
-//     console.log(i);
-// } else if (choiceC.textContent === "C. " + questions[i].answer) {
-//     console.log("C is correct!");
-//     i++;
-//     getQuestion();
-// } else if (choiceD.textContent === "D. " + questions[i].answer) {
-//     console.log("D is correct!");
-//     i++;
-//     getQuestion();
-// } else {
-//     console.log("wtf");
-//     console.log(i);
-// };
-// }
+    document.querySelector("#titleScreen").style = "animation-play-state: running;"
+    document.querySelector(".navbar-text").textContent = "Time: " + time;
 
-function checkAnswer() {
-if (choiceA.textContent === "A. " + questions[i].answer) {
-    console.log("A is correct");
-    
-    getQuestion();
-    i++;
-} else {
-    console.log("A is incorrect!")
-    
-    getQuestion();
-    if (choiceB.textContent === "B. " + questions[i].answer) {
-        console.log("B is correct");
-        
-        getQuestion();
-        i++;
-    } else {
-        console.log("B is incorrect!")
-        
-        getQuestion();
-        if (choiceC.textContent === "C. " + questions[i].answer) {
-            console.log("C is correct");
-            
-            getQuestion();
-            i++;
-        } else {
-            console.log("C is incorrect!")
-            
-            getQuestion();
-            if (choiceD.textContent === "D. " + questions[i].answer) {
-                console.log("D is correct");
-                console.log(i);
-                getQuestion();
-                i++;
-            } else {
-                console.log("D is incorrect!")
-                
-                getQuestion();
-            }
+    // Replace placeholder with the first question
+    changeQuestion();
+
+    // Wait for the title animation to finish, then show the question
+    setTimeout(function () {
+        document.querySelector("#titleScreen").style = "display: none;";
+        document.querySelector("#questionBlock").style = "display: block;";
+        document.querySelector("#questionBlock").className = "slideUp";
+    }, 400);
+
+    timeLimit = setInterval(function () {
+        time--;
+        document.querySelector(".navbar-text").textContent = "Time: " + time;
+        if (time <= 0) {
+            clearInterval(timeLimit);
+            showEndGame();
         }
+    }, 1000);
+}
+
+// changeQuestion operates only when the element clicked is a button
+function changeQuestion() {
+    var questionInfo = questions[questionNum];
+
+    // ...If there are no questions left, stop the timer and end the function...
+    if (questionInfo == undefined) {
+        clearInterval(timeLimit);
+        showEndGame();
+        return;
+    }
+
+    // ...Otherwise write the information into the next question...
+    setTimeout(function () {
+        for (var i = 0; i < optionButtons.length; i++) {
+            optionButtons[i].textContent = i + 1 + '. ' + questionInfo.choices[i];
+            optionButtons[i].value = questionInfo.choices[i];
+        }
+        document.querySelector("#questionPrompt").textContent = questionInfo.title;
+        // ...And show the question
+        questionDiv.className = "questionFadeIn";
+    }, 400);
+
+}
+
+// Checks the user input and compares it with the answer on file.
+function checkAnswer() {
+    if (event.target.nodeName == "BUTTON") {
+        var playerAnswer = event.target.value;
+        if (playerAnswer) {
+            if (playerAnswer === questions[questionNum].answer) {
+                answerText = "Correct!";
+                // If there is not enough time left over, set time to 0
+            } else {
+                answerText = "Wrong!";
+                time -= 15;
+                if (time <= 0) {
+                    time = 0;
+                }
+            }
+
+            // This block shows the result of the answer, then hides it after a given time.
+            answerDiv.innerHTML = `<hr /> ${answerText}`
+            if (answerDiv.style != "display: block;") {
+                answerDiv.style = "display: block;";
+            }
+            answerDiv.className = "answerSlideUp";
+            setTimeout(function () {
+                answerDiv.className = "fadeAway";
+                setTimeout(function () {
+                    answerDiv.style = "display: none;";
+                }, 300);
+            }, 700);
+
+            // Slide away the current question to prepare the next
+            questionDiv.className = "questionFadeOut";
+        }
+        // questionNum is iterated and the next question is called
+        questionNum++;
+        changeQuestion();
     }
 }
 
+function showEndGame() {
+    // Rewrites remaining time if the final question was wrong
+    document.querySelector(".navbar-text").textContent = "Time: " + time;
 
+    // Writes the final score to showScore
+    if (time != 0) {
+        document.querySelector("#showScore").textContent = time;
+    } else {
+        document.querySelector("#showScore").textContent = "DNF";
+    }
 
-
-
-
+    // Animation handlers
+    
+    setTimeout(function () {
+        questionDiv.style = "display: none;";
+        answerDiv.style = "display: none;";
+        endGameDiv.style = "display: block;";
+    }, 700)
 }
 
-// if (questions[1].choices[3] === questions[1].answer) {
-//     console.log("this works");
-// }
+function submitAndSaveScore(event) {
+    event.preventDefault();
+    if (playerInitials.value.trim() == '') {
+        if (alertBoxDiv.style != "display:block;") {
+            alertBoxDiv.style = "display:block;";
 
-// console.log(questions[1].choices[3]);
-
-// console.log(questions);
-
-// switch(questions[i].answer) {
-//     case w:
-//       choiceA.textContent = "A. " + questions[i].answer;
-//     case x:
-//       choiceB.textContent = "B. " + questions[i].answer;
-//       break;
-//     case y:
-//         choiceC.textContent = "C. " + questions[i].answer;
-//       break;
-//     case z:
-//         choiceD.textContent = "D. " + questions[i].answer;
-//   }
-
-  
-
-//   if (choiceA.textContent === "A. " + questions[0].answer) {
-//       console.log(true);
-//   } else {
-//       console.log(false);
-//   }
-
-choiceA.addEventListener("click", function() {
-    checkAnswer();
-});
-
-choiceB.addEventListener("click", function() {
-    checkAnswer();
-});
-
-choiceC.addEventListener("click", function() {
-    checkAnswer();
-});
-
-choiceD.addEventListener("click", function() {
-    checkAnswer();
-});
-
-
-
-//start quiz and get first question
-
+            setTimeout(function () {
+                alertBoxDiv.style = "display: none;";
+            }, 1000);
+        }
+        return;
+    } else {
+        var newHighScore = {
+            initials: playerInitials.value.toUpperCase().trim(),
+            score: time
+        };
+        scoresArray.push(newHighScore);
+        scoresArray.sort(function (a, b) { return b.score - a.score });
+        localStorage.setItem("localHighScores", JSON.stringify(scoresArray));
+        window.location.href = "./highscores.html"
+    }
+}
