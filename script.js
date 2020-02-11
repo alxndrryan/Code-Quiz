@@ -26,19 +26,14 @@ if (localStorage.getItem("localHighScores")) {
 // Do some fancy animations to hide the title screen and show the quiz
 function startQuiz() {
     event.stopPropagation();
-
-    document.querySelector("#titleScreen").style = "animation-play-state: running;"
     document.querySelector(".navbar-text").textContent = "Time: " + time;
 
     // Replace placeholder with the first question
     changeQuestion();
 
     // Wait for the title animation to finish, then show the question
-    setTimeout(function () {
-        document.querySelector("#titleScreen").style = "display: none;";
-        document.querySelector("#questionBlock").style = "display: block;";
-        document.querySelector("#questionBlock").className = "slideUp";
-    }, 400);
+    document.querySelector("#titleScreen").style = "display: none;";
+    document.querySelector("#questionBlock").style = "display: block;";
 
     timeLimit = setInterval(function () {
         time--;
@@ -62,16 +57,12 @@ function changeQuestion() {
     }
 
     // ...Otherwise write the information into the next question...
-    setTimeout(function () {
+    
         for (var i = 0; i < optionButtons.length; i++) {
             optionButtons[i].textContent = i + 1 + '. ' + questionInfo.choices[i];
             optionButtons[i].value = questionInfo.choices[i];
         }
-        document.querySelector("#questionPrompt").textContent = questionInfo.title;
-        // ...And show the question
-        questionDiv.className = "questionFadeIn";
-    }, 400);
-
+        document.querySelector("#questionPrompt").textContent = questionInfo.title;      
 }
 
 // Checks the user input and compares it with the answer on file.
@@ -122,14 +113,10 @@ function showEndGame() {
     } else {
         document.querySelector("#showScore").textContent = "DNF";
     }
-
-    // Animation handlers
     
-    setTimeout(function () {
         questionDiv.style = "display: none;";
         answerDiv.style = "display: none;";
         endGameDiv.style = "display: block;";
-    }, 700)
 }
 
 function submitAndSaveScore(event) {
