@@ -1,94 +1,99 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
-    margin-top: 40px;
-    max-width: 800px;
-    width: 80%;
+  margin-top: 40px;
+  max-width: 800px;
+  width: 80%;
 }
 
 #titleScreen {
-    text-align: center;
-    margin: auto;
-    position: relative;
-    animation-name: title-slide-out;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-in;
-    animation-duration: 0.40s;
-    animation-play-state: paused;
+  text-align: center;
+  margin: auto;
+  position: relative;
+  animation-name: title-slide-out;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+  animation-duration: 0.4s;
+  animation-play-state: paused;
 }
 
 #questionBlock {
-    display: none;
-    text-align: left;
-    margin: left;
-    position: relative;
+  display: none;
+  text-align: left;
+  margin: left;
+  position: relative;
 }
 
 #endGameBlock {
-    display: none;
-    text-align: center;
-    margin: auto;
-    position: relative;
+  display: none;
+  text-align: center;
+  margin: auto;
+  position: relative;
 }
 
 #answerResult {
-    display: none;
-    position: fixed;
-    color: darkgray;
-    font-style: italic;
-    font-size: 18pt;
+  display: none;
+  position: fixed;
+  color: darkgray;
+  font-style: italic;
+  font-size: 18pt;
 }
 
 #showScore {
-    line-height: 0.8;
-    margin-bottom: 20px;
-    font-size: 8em;
-    font-weight: bolder;
+  line-height: 0.8;
+  margin-bottom: 20px;
+  font-size: 8em;
+  font-weight: bolder;
 }
 
 #alertBox {
-    margin: auto;
-    margin-top: 15px;
-    max-width: 400px;
+  margin: auto;
+  margin-top: 15px;
+  max-width: 400px;
 }
 
-h1, h2 {
-    font-weight: bolder;
-    margin-bottom: 30px;
+h1,
+h2 {
+  font-weight: bolder;
+  margin-bottom: 30px;
 }
 
-.navbar-brand, .navbar-brand:hover, .navbar-brand:active {
-    color: #1b262c;
+.navbar-brand,
+.navbar-brand:hover,
+.navbar-brand:active {
+  color: #1b262c;
 }
 
 .scoreAltColour {
-    background-color: #bbe1fa;
+  background-color: #bbe1fa;
 }
 
 .scoreStyle {
-    padding: 3px 3px 3px 10px;
-    font-size: 16pt;
+  padding: 3px 3px 3px 10px;
+  font-size: 16pt;
 }
 
 .btn-primary {
-    background: #0f4c75;
-    border-color: #0f4c75;
+  background: #0f4c75;
+  border-color: #0f4c75;
 }
 
 .btn-primary:hover {
-    background-color: #3282b8;
-    border-color: #3282b8;
+  background-color: #3282b8;
+  border-color: #3282b8;
 }
 
-.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
-    background: #1b262c;
-    border-color: #1b262c;
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+  background: #1b262c;
+  border-color: #1b262c;
 }
 
 .btnOption {
-    display: block;
-    margin-bottom: 5px;
+  display: block;
+  margin-bottom: 5px;
 }
