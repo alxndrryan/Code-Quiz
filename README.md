@@ -10,3 +10,8 @@ Code Quiz is a simple web application using vanilla JavaScript. The user is pres
 
 - [Bootstrap](https://getbootstrap.com/) - Responsive front-end framework
 - [JavasScript](https://www.javascript.com/) - Object-oriented programming language
+
+
+## Screenshot
+
+![](code-quiz.png)
